@@ -15,6 +15,7 @@ p {
   line-height: 1.5;
   margin: 10px 0;
 }
+
 p a {
   text-decoration: underline;
 }
@@ -140,4 +141,17 @@ p a {
   display: block;
   border-bottom-right-radius: 5px;
   border-bottom-left-radius: 5px;
+}
+
+.btn-social {
+    display: inline-block;
+    border-radius: 100%;
+    text-align: center;
+    line-height: 45px;
+}
+
+.btn-outline {
+    color: #fff;
+    background: 0 0;
+    transition: all .3s ease-in-out;
 }
