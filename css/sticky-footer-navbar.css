@@ -6,7 +6,7 @@ html {
 }
 body {
   /* Margin bottom by footer height */
-  margin-bottom: 60px;
+  margin-bottom: 52px;
 }
 .footer {
   position: absolute;
@@ -45,7 +45,7 @@ code {
 
 .footer-above {
     padding-top: 10px;
-    padding-bottom: 20px;
+    padding-bottom: 10px;
     background-color: #2C3E50;
     color: #fff;
 }
