@@ -4,6 +4,7 @@ if (session_status() == PHP_SESSION_NONE) {
 }
 
 $isLoggedIn = false;
+$access_token = '';
 $userID = -1;
 $firstName = '';
 $lastName = '';
@@ -15,6 +16,7 @@ if(array_key_exists('userID',$_SESSION) && !empty($_SESSION['userID'])) {
   $lastName = $_SESSION['lastName'];
   $userID = $_SESSION['userID'];
   $imgURL = $_SESSION['$imgURL'];
+  $_SESSION['access_token'];
 }
 
 $curPageName = basename($_SERVER['PHP_SELF']);

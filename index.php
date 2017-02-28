@@ -18,10 +18,6 @@
     <link href="./css/clean-blog.css" rel="stylesheet">
     <link href="./css/sticky-footer-navbar.css" rel="stylesheet">
 
-    <!--Google Platform Library-->
-    <script src="https://apis.google.com/js/platform.js" async defer></script>
-    <meta name="google-signin-client_id" content="1071343092405-g02ovd9j7fjmvq8kbgoa35n2ohe6ehig.apps.googleusercontent.com">
-
     </head>
 
 <body>
@@ -38,7 +34,7 @@
 	      </button>
 	      <a class="navbar-brand" href="#">Text.LT</a>
 	    </div>
-	    <?php include 'navbar.php' ?>
+	    <?php require 'navbar.php' ?>
 	    <!--/.nav-collapse -->
 	  </div>
 	</nav>

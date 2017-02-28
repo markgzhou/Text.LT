@@ -1,9 +1,39 @@
-<?php $curPageName = basename($_SERVER['PHP_SELF']); ?>
+<?php $curPageName = basename($_SERVER['PHP_SELF']);
+
+$logActionName = 'Login';
+$logActionURL = './login.php';
+
+if((array_key_exists('userID',$_SESSION) && !empty($_SESSION['userID']))){
+    $logActionName = 'Logout';
+    $logActionURL = './logout.php';
+}
+else{
+    require_once ('libraries/Google/autoload.php');
+
+    //Insert your cient ID and secret
+    //You can get it from : https://console.developers.google.com/
+    $client_id = '218412164541-0pnr9pg1g8995kntltihl38edttlbq55.apps.googleusercontent.com';
+    $client_secret = 'LVAxKULf6-e_heCKsJVOIvAG';
+    $redirect_uri = 'https://lt.gterminal.com/login.php';
+    $client = new Google_Client();
+    $client->setClientId($client_id);
+    $client->setClientSecret($client_secret);
+    $client->setRedirectUri($redirect_uri);
+    $client->addScope("email");
+    $client->addScope("profile");
+
+    $authUrl = $client->createAuthUrl();
+    $logActionURL = $authUrl;
+}
+
+?>
+
+
 <div id="navbar" class="navbar-collapse collapse">
     <ul class="nav navbar-nav navbar-right">
         <li <?php if (strpos($curPageName,'index')>-1) echo 'class="active"'?>><a href="./">Home</a></li>
         <li <?php if (strpos($curPageName,'mynotes')>-1) echo 'class="active"'?>><a href="./mynotes.php">My Notes</a></li>
         <li <?php if (strpos($curPageName,'settings')>-1) echo 'class="active"'?>><a href="./settings.php">Settings</a></li>
-        <li><a href="../navbar-fixed-top/">Login</a></li>
+        <li><a href="<?php echo $logActionURL ?>"><?php echo $logActionName ?></a></li>
     </ul>
 </div>

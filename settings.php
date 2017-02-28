@@ -9,7 +9,7 @@
     <meta name="keywords" content="....."/>
     <meta name="description" content="....."/>
     <meta name="author" content="....."/>
-    <title>All my notes Text.LT - Light Text</title>
+    <title>Settings|Text.LT - Light Text</title>
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
     <!-- Optional theme -->
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap-theme.min.css">
@@ -49,7 +49,7 @@
     <div class="container">
         <div class="row">
             <div class="col-lg-12">
-                <h2>My Notes</h2>
+                <h2>Settings</h2>
             </div>
         </div>
     </div>
