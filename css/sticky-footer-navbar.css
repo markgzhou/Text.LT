@@ -35,6 +35,10 @@ body > .container-first {
   padding-left: 15px;
 }
 
+.CodeMirror-wrap {
+    height: calc(100vh - 52px)!important;
+}
+
 code {
   font-size: 80%;
 }
@@ -49,5 +53,9 @@ code {
     padding-bottom: 10px;
     background-color: #2C3E50;
     color: #fff;
+}
+
+.container {
+    padding-left: 5px;
 }
 
