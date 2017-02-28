@@ -11,8 +11,8 @@ if(isset($_SESSION['access_token']) && $_SESSION['access_token']){
 
 $loginMenu = <<<EOT
   <li class="dropdown" >
-      <a href="#" class="dropdown-toggle" data-toggle="dropdown" style="padding-top: 0px;padding-bottom: 0px;" role="button" aria-haspopup="true" aria-expanded="false" >
-         <img id="id_p" width="50px" height="50px" src="$imgURL" title="$firstName" aria-label="Profile Picture">
+      <a href="#" class="dropdown-toggle" data-toggle="dropdown" style="padding-top: 6px;padding-bottom: 2px;" role="button" aria-haspopup="true" aria-expanded="false" >
+         <img id="id_p" class="img-circle" width="42px" height="40px" src="$imgURL" title="$firstName" aria-label="Profile Picture">
         $firstName
       <span class="caret"></span></a>
       <ul class="dropdown-menu">
