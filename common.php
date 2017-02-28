@@ -8,6 +8,7 @@ $access_token = '';
 $userID = -1;
 $firstName = '';
 $lastName = '';
+$email = '';
 $imgURL = '';
 
 if(array_key_exists('userID',$_SESSION) && !empty($_SESSION['userID'])) {
@@ -15,7 +16,8 @@ if(array_key_exists('userID',$_SESSION) && !empty($_SESSION['userID'])) {
   $firstName = $_SESSION['firstName'];
   $lastName = $_SESSION['lastName'];
   $userID = $_SESSION['userID'];
-  $imgURL = $_SESSION['$imgURL'];
+  $imgURL = $_SESSION['imgURL'];
+  $email = $_SESSION['email'];
   $_SESSION['access_token'];
 }
 

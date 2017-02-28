@@ -1,11 +1,28 @@
 <?php $curPageName = basename($_SERVER['PHP_SELF']);
 
-$logActionName = 'Login';
-$logActionURL = './login.php';
+
+$loginMenu = '';
 
 if(isset($_SESSION['access_token']) && $_SESSION['access_token']){
     $logActionName = 'Logout';
     $logActionURL = './logout.php';
+    $firstName = $_SESSION['firstName'];
+    $imgURL = $_SESSION['imgURL'];
+
+
+$loginMenu = <<<EOT
+  <li class="dropdown" >
+      <a href="#" class="dropdown-toggle" data-toggle="dropdown" style="padding-top: 0px;padding-bottom: 0px;" role="button" aria-haspopup="true" aria-expanded="false" >
+         <img id="id_p"   width="50px" height="50px" src="$imgURL" title="$firstName" aria-label="Profile Picture">
+        $firstName
+      <span class="caret"></span></a>
+      <ul class="dropdown-menu">
+        <li><a href="./settings.php">Settings</a></li>
+        <li><a href="./logout.php">Logout</a></li>
+      </ul>
+ </li>
+EOT;
+
 }
 else{
     require_once ('libraries/Google/autoload.php');
@@ -21,8 +38,11 @@ else{
     $client->addScope("profile");
 
     $authUrl = $client->createAuthUrl();
-    $logActionURL = $authUrl;
+    $loginMenu =  '<li><a href="'.$authUrl.'">Login</a></li>';
 }
+
+
+
 
 ?>
 
@@ -31,7 +51,6 @@ else{
     <ul class="nav navbar-nav navbar-right">
         <li <?php if (strpos($curPageName,'index')>-1) echo 'class="active"'?>><a href="./">Home</a></li>
         <li <?php if (strpos($curPageName,'mynotes')>-1) echo 'class="active"'?>><a href="./mynotes.php">My Notes</a></li>
-        <li <?php if (strpos($curPageName,'settings')>-1) echo 'class="active"'?>><a href="./settings.php">Settings</a></li>
-        <li><a href="<?php echo $logActionURL ?>"><?php echo $logActionName ?></a></li>
+        <?php echo $loginMenu; ?>
     </ul>
 </div>

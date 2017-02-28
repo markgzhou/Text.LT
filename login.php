@@ -3,8 +3,6 @@ session_start(); //session start
 
 require_once ('libraries/Google/autoload.php');
 
-//Insert your cient ID and secret
-//You can get it from : https://console.developers.google.com/
 require 'googleOAuthCommon.php';
 
 
@@ -15,6 +13,7 @@ require 'googleOAuthCommon.php';
   through a login flow. To do this we need some
   information from our API console project.
  ************************************************/
+
 $client = new Google_Client();
 $client->setClientId($client_id);
 $client->setClientSecret($client_secret);
@@ -28,6 +27,7 @@ $client->addScope("profile");
   for the required scopes, and uses that when
   generating the authentication URL later.
  ************************************************/
+
 $service = new Google_Service_Oauth2($client);
 
 /************************************************
@@ -35,7 +35,7 @@ $service = new Google_Service_Oauth2($client);
   we need to exchange that with the authenticate()
   function. We store the resultant access token
   bundle in the session, and redirect to ourself.
-*/
+************************************************/
 
 if (isset($_GET['code'])) {
   $client->authenticate($_GET['code']);
@@ -55,8 +55,6 @@ if (isset($_SESSION['access_token']) && $_SESSION['access_token']) {
 }
 
 
-//Display user info or display login url as per the info we have.
-echo '<div style="margin:20px">';
 if (isset($authUrl)){
 	//show login url
 	echo '<div align="center">';
@@ -69,18 +67,18 @@ if (isset($authUrl)){
 
 	$user = $service->userinfo->get(); //get user info
 
-	//check if user exist in database using COUNT
-
-	//show user picture
-	echo '<img src="'.$user->picture.'" style="float: right;margin-top: 33px;" />';
-
+    $_SESSION['firstName'] = $user->givenName;
+    $_SESSION['lastName'] = $user->familyName;
+    $_SESSION['userID'] = $user->id;
+    $_SESSION['$imgURL'] = $user->picture;
+    $_SESSION['email'] = $user->email;
 
 	//print user details
 	echo '<pre>';
 	print_r($user);
 	echo '</pre>';
 }
-echo '</div>';
+
 
 
 ?>
