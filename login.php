@@ -72,6 +72,22 @@ if (isset($authUrl)){
     $_SESSION['imgURL'] = $user->picture;
     $_SESSION['email'] = $user->email;
 
+
+
+    if(isset($_SERVER['HTTP_CF_CONNECTING_IP'])){
+        $_SESSION['ip'] = $_SERVER['HTTP_CF_CONNECTING_IP'];
+    }else{
+        $_SESSION['ip']=$_SERVER['REMOTE_ADDR'];
+    }
+
+    require_once 'conn.php';
+    $prepareQuery = "INSERT INTO `gterm_text_lt`.`logs` (`loginDate`, `userID`, `emailAddr`, `ip`) VALUES (NOW(), '".$_SESSION['userID']."' ,'".$_SESSION['email']."' ,'".$_SESSION['ip']."' );";
+
+    //echo $prepareQuery;  //For debug
+
+    $mysqli->query($prepareQuery);
+
+    //For debug
 	//print user details
 	//echo '<pre>';
 	//print_r($user);

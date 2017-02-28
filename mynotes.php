@@ -68,7 +68,7 @@
                 <tbody>
                 <tr>
                     <td>02/01 7:33PM</td>
-                    <td>System Architect</td>
+                    <td>My first Notes!</td>
                 </tr>
                 <tr>
                     <td>01/01 7:33PM</td>
