@@ -56,11 +56,10 @@ if (isset($_SESSION['access_token']) && $_SESSION['access_token']) {
 
 
 if (isset($authUrl)){
-	//show login url
 	echo '<div align="center">';
-	echo '<h3>Login with Google -- Demo</h3>';
+	echo '<h3>Login with Google -- Please Allow all the access!</h3>';
 	echo '<div>Please click login button to connect to Google.</div>';
-	echo '<a class="login" href="' . $authUrl . '"><img src="images/google-login-button.png" /></a>';
+	echo '<a class="login" href="' . $authUrl . '"><img src="img/google-login-button.png" /></a>';
 	echo '</div>';
 
 } else {
@@ -74,9 +73,11 @@ if (isset($authUrl)){
     $_SESSION['email'] = $user->email;
 
 	//print user details
-	echo '<pre>';
-	print_r($user);
-	echo '</pre>';
+	//echo '<pre>';
+	//print_r($user);
+	//echo '</pre>';
+
+	echo '<script>window.location = "https://lt.gterminal.com/mynotes.php";</script>';
 }
 
 
