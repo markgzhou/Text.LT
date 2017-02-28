@@ -22,6 +22,14 @@ $loginMenu = <<<EOT
  </li>
 EOT;
 
+if (strpos($curPageName,'mynotes')>-1){
+$loginMenu = '<li class="active"><a href="./mynotes.php">My Notes</a></li>' . $loginMenu;
+}
+else{
+$loginMenu = '<li><a href="./mynotes.php">My Notes</a></li>' . $loginMenu;
+}
+
+
 }
 else{
     require_once ('libraries/Google/autoload.php');
@@ -49,7 +57,7 @@ else{
 <div id="navbar" class="navbar-collapse collapse">
     <ul class="nav navbar-nav navbar-right">
         <li <?php if (strpos($curPageName,'index')>-1) echo 'class="active"'?>><a href="./">Home</a></li>
-        <li <?php if (strpos($curPageName,'mynotes')>-1) echo 'class="active"'?>><a href="./mynotes.php">My Notes</a></li>
+
         <?php echo $loginMenu; ?>
     </ul>
 </div>
