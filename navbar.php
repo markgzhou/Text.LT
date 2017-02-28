@@ -3,7 +3,7 @@
 $logActionName = 'Login';
 $logActionURL = './login.php';
 
-if((array_key_exists('userID',$_SESSION) && !empty($_SESSION['userID']))){
+if(isset($_SESSION['access_token']) && $_SESSION['access_token']){
     $logActionName = 'Logout';
     $logActionURL = './logout.php';
 }
