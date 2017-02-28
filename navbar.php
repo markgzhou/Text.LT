@@ -4,8 +4,7 @@
 $loginMenu = '';
 
 if(isset($_SESSION['access_token']) && $_SESSION['access_token']){
-    $logActionName = 'Logout';
-    $logActionURL = './logout.php';
+
     $firstName = $_SESSION['firstName'];
     $imgURL = $_SESSION['imgURL'];
 
@@ -13,7 +12,7 @@ if(isset($_SESSION['access_token']) && $_SESSION['access_token']){
 $loginMenu = <<<EOT
   <li class="dropdown" >
       <a href="#" class="dropdown-toggle" data-toggle="dropdown" style="padding-top: 0px;padding-bottom: 0px;" role="button" aria-haspopup="true" aria-expanded="false" >
-         <img id="id_p"   width="50px" height="50px" src="$imgURL" title="$firstName" aria-label="Profile Picture">
+         <img id="id_p" width="50px" height="50px" src="$imgURL" title="$firstName" aria-label="Profile Picture">
         $firstName
       <span class="caret"></span></a>
       <ul class="dropdown-menu">

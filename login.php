@@ -70,7 +70,7 @@ if (isset($authUrl)){
     $_SESSION['firstName'] = $user->givenName;
     $_SESSION['lastName'] = $user->familyName;
     $_SESSION['userID'] = $user->id;
-    $_SESSION['$imgURL'] = $user->picture;
+    $_SESSION['imgURL'] = $user->picture;
     $_SESSION['email'] = $user->email;
 
 	//print user details
