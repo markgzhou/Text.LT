@@ -5,9 +5,7 @@ require_once ('libraries/Google/autoload.php');
 
 //Insert your cient ID and secret
 //You can get it from : https://console.developers.google.com/
-$client_id = '218412164541-0f0r5qltq4ko056pica5gorl2qgqrtu0.apps.googleusercontent.com';
-$client_secret = 'iAWQZEFmkIHN62MKWEeoKiao';
-$redirect_uri = 'https://lt.gterminal.com/mynotes.php';
+require 'googleOAuthCommon.php';
 
 
 /************************************************

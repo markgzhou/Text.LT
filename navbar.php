@@ -12,9 +12,7 @@ else{
 
     //Insert your cient ID and secret
     //You can get it from : https://console.developers.google.com/
-    $client_id = '218412164541-0pnr9pg1g8995kntltihl38edttlbq55.apps.googleusercontent.com';
-    $client_secret = 'LVAxKULf6-e_heCKsJVOIvAG';
-    $redirect_uri = 'https://lt.gterminal.com/login.php';
+    require 'googleOAuthCommon.php';
     $client = new Google_Client();
     $client->setClientId($client_id);
     $client->setClientSecret($client_secret);
