@@ -1,4 +1,4 @@
-
+<?php include 'common.php' ?>
 <!DOCTYPE html>
 <html lang=en>
 	<head>
@@ -38,14 +38,8 @@
 	      </button>
 	      <a class="navbar-brand" href="#">Text.LT</a>
 	    </div>
-	    <div id="navbar" class="navbar-collapse collapse">
-	      <ul class="nav navbar-nav navbar-right">
-	          <li class="active"><a href="./">Home</a></li>
-	          <li><a href="./mynotes.html">My Notes</a></li>
-	          <li><a href="../navbar-fixed-top/">Settings</a></li>
-	          <li><a href="../navbar-fixed-top/">Login</a></li>
-	        </ul>
-	    </div><!--/.nav-collapse -->
+	    <?php include 'navbar.php' ?>
+	    <!--/.nav-collapse -->
 	  </div>
 	</nav>
 

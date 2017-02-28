@@ -1,14 +1,14 @@
-
+<?php include 'common.php' ?>
 <!DOCTYPE html>
 <html lang=en>
-    <head>
+<head>
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <meta name="renderer" content="webkit" />
-    <meta name="keywords" content="....." />
-    <meta name="description" content="....." />
-    <meta name="author" content="....." />
+    <meta name="renderer" content="webkit"/>
+    <meta name="keywords" content="....."/>
+    <meta name="description" content="....."/>
+    <meta name="author" content="....."/>
     <title>All my notes Text.LT - Light Text</title>
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
     <!-- Optional theme -->
@@ -22,34 +22,30 @@
 
     <!--Google Platform Library-->
     <script src="https://apis.google.com/js/platform.js" async defer></script>
-    <meta name="google-signin-client_id" content="1071343092405-g02ovd9j7fjmvq8kbgoa35n2ohe6ehig.apps.googleusercontent.com">
+    <meta name="google-signin-client_id"
+          content="1071343092405-g02ovd9j7fjmvq8kbgoa35n2ohe6ehig.apps.googleusercontent.com">
 
-    </head>
+</head>
 
 <body>
 
 <!-- Fixed navbar -->
-	<nav class="navbar navbar-default navbar-fixed-top">
-	  <div class="container">
-	    <div class="navbar-header">
-	      <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar" aria-expanded="false" aria-controls="navbar">
-	        <span class="sr-only">Menu</span>
-	        <span class="icon-bar"></span>
-	        <span class="icon-bar"></span>
-	        <span class="icon-bar"></span>
-	      </button>
-	      <a class="navbar-brand" href="#">Text.LT</a>
-	    </div>
-	    <div id="navbar" class="navbar-collapse collapse">
-	      <ul class="nav navbar-nav navbar-right">
-	          <li><a href="./">Home</a></li>
-	          <li class="active"><a href="./">My Notes</a></li>
-	          <li><a href="../navbar-fixed-top/">Settings</a></li>
-	          <li><a href="../navbar-fixed-top/">Login</a></li>
-	        </ul>
-	    </div><!--/.nav-collapse -->
-	  </div>
-	</nav>
+<nav class="navbar navbar-default navbar-fixed-top">
+    <div class="container">
+        <div class="navbar-header">
+            <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar"
+                    aria-expanded="false" aria-controls="navbar">
+                <span class="sr-only">Menu</span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+            </button>
+            <a class="navbar-brand" href="#">Text.LT</a>
+        </div>
+        <?php include 'navbar.php' ?>
+        <!--/.nav-collapse -->
+    </div>
+</nav>
 
 
 <!-- Begin page content -->
@@ -89,7 +85,11 @@
                 </tr>
                 <tr>
                     <td>2017/01/01 7:33PM</td>
-                    <td>Edin xt.LT (Light-Text) is an experiment project to implements the basic function of EverNotes. Due to the limitation on editing RTF text, we have cr xt.LT (Light-Text) is an experiment project to implements the basic function of EverNotes. Due to the limitation on editing RTF text, we have crburgh</td>
+                    <td>Edin xt.LT (Light-Text) is an experiment project to implements the basic function of EverNotes.
+                        Due to the limitation on editing RTF text, we have cr xt.LT (Light-Text) is an experiment
+                        project to implements the basic function of EverNotes. Due to the limitation on editing RTF
+                        text, we have crburgh
+                    </td>
                 </tr>
                 <tr>
                     <td>2017/01/01 7:33PM</td>
@@ -109,7 +109,7 @@
     <div class="row">
         <div class="col-lg-12">
             <h2>Analysis</h2>
-            <p>Last login time: 2017-01-01.  Last login IP: 888.888.888. Your current account: xxx@gmail.com</p>
+            <p>Last login time: 2017-01-01. Last login IP: 888.888.888. Your current account: xxx@gmail.com</p>
             <p>You are out member since 2017-01-01. Thank you for your supports!</p>
         </div>
     </div>
@@ -168,7 +168,6 @@
 </footer>
 
 
-
 <!--  	<footer class="footer">
       <div class="container">
         <p class="text-muted">Place sticky footer content here.</p>
@@ -176,22 +175,20 @@
     </footer> -->
 
 
-    <div class="navbar navbar-default navbar-fixed-bottom" role="navigation">
-        <div class="container">
-            <p>Copyright © gTerminal 2017</p>
-        </div><!--/.nav-collapse -->
-    </div>
+<div class="navbar navbar-default navbar-fixed-bottom" role="navigation">
+    <div class="container">
+        <p>Copyright © gTerminal 2017</p>
+    </div><!--/.nav-collapse -->
+</div>
 
 
+<!-- Bootstrap core JavaScript
+================================================== -->
+<!-- Placed at the end of the document so the pages load faster -->
 
-
-	<!-- Bootstrap core JavaScript
-    ================================================== -->
-    <!-- Placed at the end of the document so the pages load faster -->
-
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.0/jquery.min.js"></script>
-	<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
-    <script type="text/javascript" charset="utf8" src="https://cdn.datatables.net/1.10.13/js/jquery.dataTables.js"></script>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.0/jquery.min.js"></script>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+<script type="text/javascript" charset="utf8" src="https://cdn.datatables.net/1.10.13/js/jquery.dataTables.js"></script>
 
 <script>
     $(document).ready(function() {
@@ -207,6 +204,7 @@
     );
 
 } );
+
 </script>
 
 </body>
