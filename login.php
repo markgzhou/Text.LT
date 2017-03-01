@@ -82,7 +82,7 @@ if (isset($authUrl)){
 
     require_once 'conn.php';
     $stmt = $mysqli->prepare("INSERT INTO `gterm_text_lt`.`logs` (`loginDate`, `userID`, `emailAddr`, `ip`) VALUES (?, ?, ?, ?)");
-    $stmt->bind_param('isss', time() , $_SESSION['userID'], $_SESSION['email'], $_SESSION['ip']);
+    $stmt->bind_param('ssss', date("Y-m-d H:i:s") , $_SESSION['userID'], $_SESSION['email'], $_SESSION['ip']);
     $stmt->execute();
     $stmt->close();
 
