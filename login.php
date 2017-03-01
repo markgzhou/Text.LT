@@ -82,13 +82,13 @@ if (isset($authUrl)){
 
     require_once 'conn.php';
     $stmt = $mysqli->prepare("INSERT INTO `gterm_text_lt`.`logs` (`loginDate`, `userID`, `emailAddr`, `ip`) VALUES (?, ?, ?, ?)");
-    $stmt->bind_param('ssss', NOW(), $_SESSION['userID'], $_SESSION['email'], $_SESSION['ip']);
+    $stmt->bind_param('isss', time() , $_SESSION['userID'], $_SESSION['email'], $_SESSION['ip']);
+    $stmt->execute();
+    $stmt->close();
 
 //    $prepareQuery = "INSERT INTO `gterm_text_lt`.`logs` (`loginDate`, `userID`, `emailAddr`, `ip`) VALUES (NOW(), '".."' ,'".$_SESSION['email']."' ,'".$_SESSION['ip']."' );";
-
-    //echo $prepareQuery;  //For debug
-
-    $mysqli->query($prepareQuery);
+//    echo $prepareQuery;  //For debug
+//    $mysqli->query($prepareQuery);
 
     //For debug
 	//print user details
