@@ -3,7 +3,7 @@ session_start(); //session start
 
 require_once ('libraries/Google/autoload.php');
 
-require 'googleOAuthCommon.php';
+include 'googleOAuthCommon.php';
 
 
 /************************************************
