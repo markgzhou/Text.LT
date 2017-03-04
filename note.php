@@ -26,8 +26,8 @@ if($isLoggedIn && isset($_REQUEST['page']) && strtolower($_REQUEST['page']) =='n
 
         $rawPageID = makeNotePageID($userID,$insertedID);
         $isAuthorized = true;
-        header("Location:note.php?page=".$rawPageID );
-
+        header("Location:note.php?page=".$rawPageID,   true,  301 );
+        exit;
      }
 }
 else if ($isLoggedIn && isset($_REQUEST['page'])){
