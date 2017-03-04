@@ -1,8 +1,6 @@
 <?php require_once 'common.php' ?>
 <?php require_once 'conn.php' ?>
-
 <?php
-
 
 $isAuthorized = false;
 
@@ -26,6 +24,7 @@ if($isLoggedIn && isset($_REQUEST['page']) && strtolower($_REQUEST['page']) =='n
 
         $rawPageID = makeNotePageID($userID,$insertedID);
         $isAuthorized = true;
+
         header("Location:note.php?page=".$rawPageID,   true,  301 );
         exit;
      }
