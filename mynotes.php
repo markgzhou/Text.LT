@@ -104,7 +104,7 @@
     <div class="row">
         <div class="col-lg-12">
             <h2>Analysis</h2>
-            <p>Last login time: 2017-01-01. Last login IP: 888.888.888. Your current account: xxx@gmail.com</p>
+            <p>Last login time: 2017-01-01. Last login IP: 888.888.888. Your current account: <?=$email?></p>
             <p>You are out member since 2017-01-01. Thank you for your supports!</p>
         </div>
     </div>

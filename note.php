@@ -31,7 +31,7 @@
 
 <!-- Begin page content -->
 
-<div class="container">
+<div class="container container-note">
     <div class="row">
         <div class="col-lg-12 text-left">
 

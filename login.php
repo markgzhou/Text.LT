@@ -82,7 +82,8 @@ if (isset($authUrl)){
 
     require_once 'conn.php';
     $stmt = $mysqli->prepare("INSERT INTO `gterm_text_lt`.`logs` (`loginDate`, `userID`, `emailAddr`, `ip`) VALUES (?, ?, ?, ?)");
-    $stmt->bind_param('ssss', date("Y-m-d H:i:s") , $_SESSION['userID'], $_SESSION['email'], $_SESSION['ip']);
+    $mySQLtimeNow = date("Y-m-d H:i:s");
+    $stmt->bind_param('ssss', $mySQLtimeNow , $_SESSION['userID'], $_SESSION['email'], $_SESSION['ip']);
     $stmt->execute();
     $stmt->close();
 
@@ -96,7 +97,7 @@ if (isset($authUrl)){
 	//print_r($user);
 	//echo '</pre>';
 
-	echo '<script>window.location = "https://lt.gterminal.com/mynotes.php";</script>';
+	echo '<script>window.location = "'.$landing_page_url.'";</script>';
 }
 
 
