@@ -10,6 +10,9 @@ $firstName = '';
 $lastName = '';
 $email = '';
 $imgURL = '';
+$author = 'Guanlong Zhou';
+$description = 'Text.LT | Light Text';
+$keywords = 'gTerminal, Text.LT, Light Text';
 
 if(array_key_exists('userID',$_SESSION) && !empty($_SESSION['userID'])) {
   $isLoggedIn = true;
@@ -24,5 +27,14 @@ if(array_key_exists('userID',$_SESSION) && !empty($_SESSION['userID'])) {
 }
 
 $curPageName = basename($_SERVER['PHP_SELF']);
+
+function makeNotePageID($userID, $pageID){
+    return 'l'. substr(time(), -5, 5). substr($userID,-5,5) .$pageID ;
+}
+
+
+function getNotePageID($rawPageID){
+    return substr($rawPageID, 11, 5);
+}
 
 ?>

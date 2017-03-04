@@ -1,4 +1,55 @@
-<?php include 'common.php' ?>
+<?php require_once 'common.php' ?>
+<?php require_once 'conn.php' ?>
+
+<?php
+
+
+$isAuthorized = false;
+
+if($isLoggedIn && isset($_REQUEST['page']) && strtolower($_REQUEST['page']) =='new'){
+
+    if(didCurrentUserCreateTooManyNotes($userID, $mysqli)){
+        $_SESSION['msgType'] = '406 Not Acceptable';
+        $_SESSION['msg1'] = 'You have created too many notes.';
+        $_SESSION['msg2'] = 'Please delete some notes and retry.';
+        header("Location:message.php");
+        die();
+    }
+    else{
+        $sampleContent = 'This is a brand new note! \n Wow Cool!';
+        //create a new record in notes table
+        $stmt = $mysqli->prepare("INSERT INTO `gterm_text_lt`.`notes` (`noteContent`, `updateDate` , `userID`, `ip`,  `email`) VALUES (?, now(), ?, ?, ?)");
+        $stmt->bind_param('ssss' ,$sampleContent, $_SESSION['userID'], $_SESSION['ip'], $_SESSION['email']);
+        $stmt->execute();
+        $insertedID = $stmt->insert_id;
+        $stmt->close();
+
+        $rawPageID = makeNotePageID($userID,$insertedID);
+        $isAuthorized = true;
+        header("Location:note.php?page=".$rawPageID );
+        die('inserted ID:' . $insertedID);
+     }
+}
+else if ($isLoggedIn && isset($_REQUEST['page'])){
+
+    //TODO: Check is note page exists and the note page belongs to the owner with userID
+    $isAuthorized = true;
+    die( '$rawPageID = ' . getNotePageID($_REQUEST['page']));
+}
+
+
+if(!$isAuthorized){
+$_SESSION['msgType'] = '401 Not Authorized';
+$_SESSION['msg1'] = 'You do not have access to this page.';
+$_SESSION['msg2'] = 'Your account is not authorized.';
+header("Location:message.php");
+die();
+}
+
+
+?>
+
+
 <!DOCTYPE html>
 <html lang=en>
 <head>
@@ -20,9 +71,8 @@
     <link href="./css/clean-blog.css" rel="stylesheet">
     <link href="./css/sticky-footer-navbar.css" rel="stylesheet">
 
-    <script src="lib/codemirror.js"></script>
     <link rel="stylesheet" href="lib/codemirror.css">
-    <script src="mode/javascript/javascript.js"></script>
+
 
 </head>
 
@@ -35,14 +85,14 @@
     <div class="row">
         <div class="col-lg-12 text-left">
 
-<textarea id="notearea">
-<!-- Create a simple CodeMirror instance -->
-<script>
-  var editor = CodeMirror.fromTextArea(myTextarea, {
-    lineNumbers: true
-  });
-</script>
-</textarea>
+        <textarea id="notearea">
+        <!-- Create a simple CodeMirror instance -->
+        <script>
+          var editor = CodeMirror.fromTextArea(myTextarea, {
+            lineNumbers: true
+          });
+        </script>
+        </textarea>
 
 
 
@@ -77,6 +127,9 @@
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.0/jquery.min.js"></script>
 <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
 <script type="text/javascript" charset="utf8" src="https://cdn.datatables.net/1.10.13/js/jquery.dataTables.js"></script>
+<script src="lib/codemirror.js"></script>
+<script src="lib/text.lt.v.1.0.js"></script>
+<script src="mode/javascript/javascript.js"></script>
 
 <script>
     $(document).ready(function() {

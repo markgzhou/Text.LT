@@ -1,4 +1,13 @@
 <?php include 'common.php' ?>
+<?php
+$msgType = array_key_exists('msgType',$_SESSION) ?  $_SESSION['msgType'] : '404 Error!';
+$msg1 = array_key_exists('msg1',$_SESSION) ?  $_SESSION['msg1'] : 'The page does not exist!';
+$msg2 = array_key_exists('msg2',$_SESSION) ?  $_SESSION['msg2'] : 'Please email us if you have any access issue.';
+
+unset($_SESSION['msgType']);
+unset($_SESSION['msg1']);
+unset($_SESSION['msg2']);
+?>
 <!DOCTYPE html>
 <html lang=en>
 	<head>
@@ -9,7 +18,7 @@
     <meta name="keywords" content="<?=$keywords?>" />
     <meta name="description" content="<?=$description?>" />
     <meta name="author" content="<?=$author?>" />
-    <title>Text.LT - Light Text - gTerminal</title>
+    <title> <?php echo $msgType .'-'.$msg1  ?> -Text.LT - gTerminal</title>
 	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">'
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
 	<!-- Optional theme -->
@@ -40,10 +49,10 @@
             <div class="row">
                 <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
                     <div class="site-heading">
-                        <h1>Light - Text</h1>
+                        <h1><?=$msgType?></h1>
                         <hr class="small">
-                        <span class="subheading">Write your notes once</span>
-                        <span class="subheading">Access them anywhere anytime</span>
+                        <span class="subheading"><?=$msg1?></span>
+                        <span class="subheading"><?=$msg2?></span>
                     </div>
                 </div>
             </div>

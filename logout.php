@@ -1,7 +1,10 @@
 <?php
 session_start();
 session_unset();
-session_destroy();
-header("Location:index.php")
+
+$_SESSION['msgType'] = 'Logged out';
+$_SESSION['msg1'] = 'You have successfully logged out.';
+$_SESSION['msg2'] = 'Click Login button to log back in.';
+header("Location:message.php")
 
 ?>

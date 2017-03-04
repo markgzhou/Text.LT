@@ -7,9 +7,9 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <meta name="renderer" content="webkit"/>
-    <meta name="keywords" content="....."/>
-    <meta name="description" content="....."/>
-    <meta name="author" content="....."/>
+    <meta name="keywords" content="<?=$keywords?>" />
+    <meta name="description" content="<?=$description?>" />
+    <meta name="author" content="<?=$author?>" />
     <title>All my notes Text.LT - Light Text</title>
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
     <!-- Optional theme -->
@@ -70,7 +70,7 @@
 						echo '<tr>';
 						echo '<td>' . date("Y-m-d G:i", strtotime($row["updateDate"])) . '</td>';
 						//mb_substr handles utf-8 encoding
-						echo '<td><a href="note.php?page=l'. substr($userID,-5,5).$row["noteID"] .'"  target="_Note">'. mb_substr($row["noteContent"],0,100,'utf-8').'...</a></td>';
+						echo '<td><a href="note.php?page='. makeNotePageID($userID,$row["noteID"] ).'"  target="_Note">'. mb_substr($row["noteContent"],0,100,'utf-8').'...</a></td>';
 						echo '</tr>';
 					}
 				}

@@ -6,9 +6,9 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <meta name="renderer" content="webkit"/>
-    <meta name="keywords" content="....."/>
-    <meta name="description" content="....."/>
-    <meta name="author" content="....."/>
+    <meta name="keywords" content="<?=$keywords?>" />
+    <meta name="description" content="<?=$description?>" />
+    <meta name="author" content="<?=$author?>" />
     <title>Settings|Text.LT - Light Text</title>
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
     <!-- Optional theme -->
