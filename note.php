@@ -10,8 +10,6 @@ if($isLoggedIn && isset($_REQUEST['page']) && strtolower($_REQUEST['page']) =='n
         $_SESSION['msgType'] = '406 Not Acceptable';
         $_SESSION['msg1'] = 'You have created too many notes.';
         $_SESSION['msg2'] = 'Please delete some notes and retry.';
-        header("Location:message.php");
-        die();
     }
     else{
         $sampleContent = 'This is a brand new note! \n Wow Cool!';
@@ -30,17 +28,21 @@ if($isLoggedIn && isset($_REQUEST['page']) && strtolower($_REQUEST['page']) =='n
      }
 }
 else if ($isLoggedIn && isset($_REQUEST['page'])){
-
-    //TODO: Check is note page exists and the note page belongs to the owner with userID
-    $isAuthorized = true;
-    die( '$rawPageID = ' . getNotePageID($_REQUEST['page']));
+    $currentPageID = getNotePageID($_REQUEST['page']);
+    $pageContent = isCurrentUserOwnCurerntPage($userID,$currentPageID,$mysqli);
+    if($pageContent == false){
+        $_SESSION['msgType'] = '403 Forbidden';
+        $_SESSION['msg1'] = 'Unauthorized to access the resource';
+        $_SESSION['msg2'] = 'Please only access your own notes';
+    }
+    else{
+        $isAuthorized = true;
+        die( '$pageContent = ' .$pageContent);
+    }
 }
 
 
 if(!$isAuthorized){
-$_SESSION['msgType'] = '401 Not Authorized';
-$_SESSION['msg1'] = 'You do not have access to this page.';
-$_SESSION['msg2'] = 'Your account is not authorized.';
 header("Location:message.php");
 die();
 }

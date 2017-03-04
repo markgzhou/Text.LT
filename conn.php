@@ -22,4 +22,25 @@ function didCurrentUserCreateTooManyNotes($userID, $mysqli){
     return false;
 }
 
+function isCurrentUserOwnCurerntPage($userID, $pageID, $mysqli){
+    $pageID = (int)$pageID ;
+    if($pageID > 0 ){
+        $stmt = $mysqli->prepare("SELECT noteContent FROM `gterm_text_lt`.`notes` where userID = ? ; ");
+        $stmt->bind_param('s' , $_SESSION['userID']);
+        if($stmt->execute()){
+            $stmt->bind_result($noteContent);
+            //TODO: Grab single note record
+            while ($stmt->fetch()) {
+                printf ("%s \n ", $noteContent);
+            }
+        }
+
+
+        die( );
+
+    }
+
+    return false;
+}
+
 ?>
