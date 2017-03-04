@@ -81,11 +81,32 @@ if (isset($authUrl)){
     }
 
     require_once 'conn.php';
-    $stmt = $mysqli->prepare("INSERT INTO `gterm_text_lt`.`logs` (`loginDate`, `userID`, `emailAddr`, `ip`) VALUES (?, ?, ?, ?)");
-    $mySQLtimeNow = date("Y-m-d H:i:s");
-    $stmt->bind_param('ssss', $mySQLtimeNow , $_SESSION['userID'], $_SESSION['email'], $_SESSION['ip']);
-    $stmt->execute();
-    $stmt->close();
+	
+	//Check if logged in with 5 minutes using same IP.
+	$sql = "SELECT * FROM `gterm_text_lt`.`logs` where userID = '". $_SESSION['userID'] . "' and ip = '".$_SESSION['ip']."' and loginDate > (NOW() - INTERVAL 5 MINUTE) limit 1;";
+	$result = $mysqli->query($sql);
+	if ($result->num_rows > 0) {
+		//DoNothing
+	} else {
+		//Add login log
+		$stmt = $mysqli->prepare("INSERT INTO `gterm_text_lt`.`logs` (`loginDate`, `userID`, `emailAddr`, `ip`) VALUES (now(), ?, ?, ?)");
+		$mySQLtimeNow = date("Y-m-d H:i:s");
+		$stmt->bind_param('sss' , $_SESSION['userID'], $_SESSION['email'], $_SESSION['ip']);
+		$stmt->execute();
+		$stmt->close();
+	}
+	
+	//Get very first login history.
+	$sql = "SELECT * FROM `gterm_text_lt`.`logs` where userID = '". $_SESSION['userID'] . "' order by loginDate limit 1;";
+	$result = $mysqli->query($sql);
+	if ($result->num_rows > 0) {
+		while($row = $result->fetch_assoc()) {
+			$_SESSION['firstLoginTime'] = strtotime($row["loginDate"]);
+		}
+	} else {
+		$_SESSION['firstLoginTime'] = time();
+	}
+	
 
 //    $prepareQuery = "INSERT INTO `gterm_text_lt`.`logs` (`loginDate`, `userID`, `emailAddr`, `ip`) VALUES (NOW(), '".."' ,'".$_SESSION['email']."' ,'".$_SESSION['ip']."' );";
 //    echo $prepareQuery;  //For debug

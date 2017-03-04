@@ -18,7 +18,9 @@ if(array_key_exists('userID',$_SESSION) && !empty($_SESSION['userID'])) {
   $userID = $_SESSION['userID'];
   $imgURL = $_SESSION['imgURL'];
   $email = $_SESSION['email'];
-  $_SESSION['access_token'];
+  $ip = $_SESSION['ip'];
+  $accessToken = $_SESSION['access_token'];
+  $firstLoginTime = $_SESSION['firstLoginTime'];
 }
 
 $curPageName = basename($_SERVER['PHP_SELF']);

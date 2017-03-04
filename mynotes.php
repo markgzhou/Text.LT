@@ -1,4 +1,5 @@
-<?php include 'common.php' ?>
+<?php require_once 'common.php' ?>
+<?php require_once 'conn.php' ?>
 <!DOCTYPE html>
 <html lang=en>
 <head>
@@ -27,16 +28,6 @@
 <!-- Fixed navbar -->
 <nav class="navbar navbar-default navbar-fixed-top">
     <div class="container">
-        <div class="navbar-header">
-            <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar"
-                    aria-expanded="false" aria-controls="navbar">
-                <span class="sr-only">Menu</span>
-                <span class="icon-bar"></span>
-                <span class="icon-bar"></span>
-                <span class="icon-bar"></span>
-            </button>
-            <a class="navbar-brand" href="#">Text.LT</a>
-        </div>
         <?php require 'navbar.php' ?>
         <!--/.nav-collapse -->
     </div>
@@ -48,8 +39,13 @@
 <div class="container-first">
     <div class="container">
         <div class="row">
-            <div class="col-lg-12">
+            <div class="col-lg-6">
                 <h2>My Notes</h2>
+            </div>
+			<div class="col-lg-6" align="right">
+                <h2>
+					<a type="button" class="btn btn-success" href="note.php?page=new"  target="_Note">Create a new note</a>
+				</h2>
             </div>
         </div>
     </div>
@@ -57,7 +53,7 @@
 
 <div class="container">
     <div class="row">
-        <div class="col-lg-12 text-center">
+        <div class="col-lg-12 text-left">
             <table id="example" class="display" cellspacing="0" width="100%">
                 <thead>
                 <tr>
@@ -66,34 +62,21 @@
                 </tr>
                 </thead>
                 <tbody>
-                <tr>
-                    <td>02/01 7:33PM</td>
-                    <td>My first Notes!</td>
-                </tr>
-                <tr>
-                    <td>01/01 7:33PM</td>
-                    <td>Accountant</td>
-                </tr>
-                <tr>
-                    <td>2016/12/01 7:33PM</td>
-                    <td>San Francisco</td>
-                </tr>
-                <tr>
-                    <td>2017/01/01 7:33PM</td>
-                    <td>Edin xt.LT (Light-Text) is an experiment project to implements the basic function of EverNotes.
-                        Due to the limitation on editing RTF text, we have cr xt.LT (Light-Text) is an experiment
-                        project to implements the basic function of EverNotes. Due to the limitation on editing RTF
-                        text, we have crburgh
-                    </td>
-                </tr>
-                <tr>
-                    <td>2017/01/01 7:33PM</td>
-                    <td>Accountant</td>
-                </tr>
-                <tr>
-                    <td>2017/01/01 7:33PM</td>
-                    <td>Integration Specialist</td>
-                </tr>
+				<?php
+				$sql = "SELECT * FROM `gterm_text_lt`.`notes` where userID = '". $_SESSION['userID'] . "';";
+				$result = $mysqli->query($sql);
+				if ($result->num_rows > 0) {
+					while($row = $result->fetch_assoc()) {
+						echo '<tr>';
+						echo '<td>' . date("Y-m-d G:i", strtotime($row["updateDate"])) . '</td>';
+						//mb_substr handles utf-8 encoding
+						echo '<td><a href="note.php?page=l'. substr($userID,-5,5).$row["noteID"] .'"  target="_Note">'. mb_substr($row["noteContent"],0,100,'utf-8').'...</a></td>';
+						echo '</tr>';
+					}
+				}
+					
+				?>
+				
                 </tbody>
             </table>
         </div>
@@ -104,8 +87,9 @@
     <div class="row">
         <div class="col-lg-12">
             <h2>Analysis</h2>
-            <p>Last login time: 2017-01-01. Last login IP: 888.888.888. Your current account: <?=$email?></p>
-            <p>You are out member since 2017-01-01. Thank you for your supports!</p>
+			<p>Account: <?=$email?></p>
+            <p>Current login IP: <?=$ip?>.</p>
+            <p>Member of Text.LT since <?=date("F j, Y",$firstLoginTime)?>. Thank you for your support, <?=$firstName?> <?=$lastName?>!</p>
         </div>
     </div>
 </div>
