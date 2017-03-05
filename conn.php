@@ -25,22 +25,34 @@ function didCurrentUserCreateTooManyNotes($userID, $mysqli){
 function isCurrentUserOwnCurerntPage($userID, $pageID, $mysqli){
     $pageID = (int)$pageID ;
     if($pageID > 0 ){
-        $stmt = $mysqli->prepare("SELECT noteContent FROM `gterm_text_lt`.`notes` where userID = ? ; ");
-        $stmt->bind_param('s' , $_SESSION['userID']);
+        $stmt = $mysqli->prepare("SELECT noteContent FROM `gterm_text_lt`.`notes` where userID = ? and noteID = ?; ");
+        $stmt->bind_param('ss' , $userID, $pageID);
         if($stmt->execute()){
             $stmt->bind_result($noteContent);
-            //TODO: Grab single note record
-            while ($stmt->fetch()) {
-                printf ("%s \n ", $noteContent);
+            //Grab Single note record
+            if ($stmt->fetch()) {
+              return $noteContent;
             }
         }
-
-
-        die( );
-
     }
-
     return false;
 }
+
+function isCurrentUserHasAProfile($userID, $mysqli){
+ $sqlTemp = "SELECT * FROM `gterm_text_lt`.`user` where googleUserID = '". $userID ."'";
+    $result = $mysqli->query($sqlTemp);
+    if ($result->num_rows > 0) {
+      return true;
+    }
+    return false;
+}
+
+function createProfileForUser($userID, $mysqli){
+    $stmt = $mysqli->prepare("INSERT INTO `gterm_text_lt`.`user` (`googleUserID`, `layout`, `emailAddr`, `ip`) VALUES (?, 0, ?, ?)");
+    $stmt->bind_param('sss' , $_SESSION['userID'], $_SESSION['email'], $_SESSION['ip']);
+    $stmt->execute();
+    $stmt->close();
+}
+
 
 ?>

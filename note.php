@@ -37,7 +37,7 @@ else if ($isLoggedIn && isset($_REQUEST['page'])){
     }
     else{
         $isAuthorized = true;
-        die( '$pageContent = ' .$pageContent);
+        die( '$pageContent >>>>>>= ' .$pageContent);
     }
 }
 

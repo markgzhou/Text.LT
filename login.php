@@ -94,6 +94,12 @@ if (isset($authUrl)){
 		$stmt->bind_param('sss' , $_SESSION['userID'], $_SESSION['email'], $_SESSION['ip']);
 		$stmt->execute();
 		$stmt->close();
+
+		//Check If User has a profile, create user profile if not exists
+        if(!isCurrentUserHasAProfile($_SESSION['userID'], $mysqli)){
+            //Create Profile for current user.
+            createProfileForUser($_SESSION['userID'], $mysqli);
+        }
 	}
 	
 	//Get very first login history.
